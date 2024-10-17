@@ -18,10 +18,14 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Image
+  Image,
+  Heading,
+  VStack
 } from "@chakra-ui/react";
 import logo from "../assets/link-card-logo.svg";
 import check from "../assets/checkmark-circle-01.svg";
+import checkGrey from "../assets/checkmark-circle-01-grey.svg";
+
 import alert from "../assets/alert-01.svg";
 
 const LinkModal = ({ isOpen, onClose }) => {
@@ -110,7 +114,20 @@ const LinkModal = ({ isOpen, onClose }) => {
             borderTopLeftRadius="2xl"
             borderBottomLeftRadius="2xl"
           >
-            <ModalHeader fontSize="2xl">Link a new card</ModalHeader>
+            <VStack
+              width="fit-content"
+              margin="auto"
+              alignItems="start"
+              mt="50px"
+            >
+              <Text textAlign="start" fontSize="2xl" fontWeight="bold">
+                Link a new card
+              </Text>
+              <Text width="280px" textAlign="start" color="#292929">
+                Seamlessly write data on any NFC Card in 3 simple steps
+              </Text>
+            </VStack>
+
             <Tabs orientation="vertical" index={currentTab}>
               <TabList
                 display="flex"
@@ -118,85 +135,102 @@ const LinkModal = ({ isOpen, onClose }) => {
                 alignItems="flex-start" // Align the tabs to the start
                 justifyContent="start"
                 textAlign="start"
-                gap={6}
+                gap={3}
               >
-                <Text justifyContent="flex-start">Enter Username</Text>
-
+                <Text mt={"20px"} justifyContent="flex-start">
+                  Enter Username
+                </Text>
                 <Tab
                   isDisabled={currentTab < 1}
-                  color={currentTab >= 1 ? "black" : "#838282"}
-                  _selected={{ color: "black", fontWeight: "bold" }}
+                  color={currentTab >= 1 ? "#838282" : "#838282"}
+                  _selected={{ color: "black" }}
                   display="flex"
                   justifyContent="flex-start" // Align the tab content to start
-                  gap={2} // Adds space between the icon and text
+                  gap={2}
                 >
-                  {currentTab >= 1 && <Image src={check} boxSize="24px" />}
+                  <Image
+                    src={currentTab >= 1 ? check : checkGrey}
+                    boxSize="24px"
+                  />
                   Validating Profile
                 </Tab>
 
                 <Tab
                   isDisabled={currentTab < 2}
-                  color={currentTab >= 2 ? "black" : "#838282"}
-                  _selected={{ color: "black", fontWeight: "bold" }}
+                  color={currentTab >= 2 ? "#838282" : "#838282"}
+                  _selected={{ color: "black" }}
                   display="flex"
                   justifyContent="flex-start"
                   gap={2}
                 >
-                  {currentTab >= 2 && <Image src={check} boxSize="24px" />}
+                  <Image
+                    src={currentTab >= 2 ? check : checkGrey}
+                    boxSize="24px"
+                  />
                   Profile Validated
                 </Tab>
 
                 <Tab
                   isDisabled={currentTab < 3}
-                  color={currentTab >= 3 ? "black" : "#838282"}
-                  _selected={{ color: "black", fontWeight: "bold" }}
+                  color={currentTab >= 3 ? "#838282" : "#838282"}
+                  _selected={{ color: "black" }}
                   display="flex"
                   justifyContent="flex-start"
                   gap={2}
+                  fontSize={'18px'}
                 >
                   Tap Card on NFC Hardware
                 </Tab>
 
                 <Tab
                   isDisabled={currentTab < 4}
-                  color={currentTab >= 4 ? "black" : "#838282"}
-                  _selected={{ color: "black", fontWeight: "bold" }}
+                  color={currentTab >= 4 ? "#838282" : "#838282"}
+                  _selected={{ color: "black" }}
                   display="flex"
                   justifyContent="flex-start"
                   gap={2}
                 >
-                  {currentTab >= 4 && <Image src={check} boxSize="24px" />}
+                  <Image
+                    src={currentTab >= 4 ? check : checkGrey}
+                    boxSize="24px"
+                  />
                   Scanning
                 </Tab>
 
                 <Tab
                   isDisabled={currentTab < 5}
-                  color={currentTab >= 5 ? "black" : "#838282"}
-                  _selected={{ color: "black", fontWeight: "bold" }}
+                  color={currentTab >= 5 ? "#838282" : "#838282"}
+                  _selected={{ color: "black" }}
                   display="flex"
                   justifyContent="flex-start"
                   gap={2}
                 >
-                  {currentTab >= 5 && <Image src={check} boxSize="24px" />}
+                  <Image
+                    src={currentTab >= 5 ? check : checkGrey}
+                    boxSize="24px"
+                  />
                   Valid Card Detected
                 </Tab>
 
                 <Tab
                   isDisabled={currentTab < 6}
-                  color={currentTab >= 6 ? "black" : "#838282"}
-                  _selected={{ color: "black", fontWeight: "bold" }}
+                  color={currentTab >= 6 ? "#838282" : "#838282"}
+                  _selected={{ color: "black" }}
                   display="flex"
                   justifyContent="flex-start"
                   gap={2}
                 >
-                  {currentTab >= 6 && <Image src={check} boxSize="24px" />}
+                  <Image
+                    src={currentTab >= 6 ? check : checkGrey}
+                    boxSize="24px"
+                  />
                   Card Linked
                 </Tab>
 
                 <Tab
                   isDisabled={currentTab < 7}
-                  color={currentTab >= 7 ? "black" : "#838282"}
-                  _selected={{ color: "black", fontWeight: "bold" }}
+                  color={currentTab >= 7 ? "#838282" : "#838282"}
+                  _selected={{ color: "black" }}
                   display="flex"
                   justifyContent="flex-start"
                   gap={2}
@@ -268,9 +302,6 @@ const LinkModal = ({ isOpen, onClose }) => {
                 {/* Validating Profile Panel */}
                 <TabPanel>
                   <Image m={"auto"} width={"300px"} src={logo} />
-                  <Text textAlign="center" fontSize="xl" mt={4}>
-                    Validating Profile...
-                  </Text>
                   <Flex mt={4} justifyContent="space-between">
                     <Button
                       // isDisabled={currentTab === 6}

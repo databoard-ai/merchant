@@ -31,6 +31,7 @@ import LinkModal from "../../components/LinkCardModal";
 import hand from "../../assets/waving hand.svg";
 import card from "../../assets/link card.svg";
 import top from "../../assets/topup.svg";
+import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/search.svg";
 
 
@@ -254,7 +255,7 @@ const DashboardPage = () => {
                   border="1px solid #838282"
                   ml="10px"
                   bg="white"
-                  color="black"
+                  color="#292929"
                   p="20px"
                   pl={"25px"}
                   pr={"25px"}
@@ -265,7 +266,9 @@ const DashboardPage = () => {
                   onClick={onTopUpOpen}
                 >
                   <Image src={top} />
-                  <Text ml="5px">Top up</Text>
+                  <Text color="#292929" ml="5px">
+                    Top up
+                  </Text>
                 </Button>
               </Flex>
             </Flex>

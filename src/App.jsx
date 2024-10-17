@@ -5,6 +5,7 @@ import LoginPage from "./pages/login";
 import OtpPage from "./pages/otp";
 import EmailPage from "./pages/email";
 import DashboardPage from "./pages/dashboard";
+import CardLinkPage from "./pages/cardslink";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         <Route path="/otp" element={<OtpPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/card-link" element={<CardLinkPage />} />
 
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>

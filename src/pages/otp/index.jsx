@@ -97,10 +97,17 @@ const OtpPage = () => {
           justifyContent="center"
         >
           <Box width={"80%"} margin={"auto"}>
-            <Heading as="h2" size="xl" textAlign="start" mb={6} color={"black"}>
+            <Heading
+              as="h2"
+              size="xl"
+              textAlign="start"
+              fontWeight={"600"}
+              mb={6}
+              color={"black"}
+            >
               Enter OTP
             </Heading>
-            <Text fontSize={"18px"} color={"black"} fontWeight={"semibold"}>
+            <Text fontSize={"18px"} color={"black"}>
               Enter 6-digit code sent to{" "}
               <Text as="span" color="#FF4D00" cursor="pointer">
                 oluseyi@clocker.com
@@ -108,13 +115,6 @@ const OtpPage = () => {
             </Text>
             <VStack marginTop={"30px"} spacing={4}>
               <FormControl>
-                <FormLabel
-                  fontSize={"18px"}
-                  color={"black"}
-                  fontWeight={"semibold"}
-                >
-                  OTP Code
-                </FormLabel>
                 <HStack spacing={4}>
                   {otp.map((data, index) => (
                     <Input
@@ -137,19 +137,6 @@ const OtpPage = () => {
                   ))}
                 </HStack>
               </FormControl>
-              <Button
-                colorScheme={isOtpComplete ? "blue" : undefined}
-                width="full"
-                padding={"30px"}
-                bg={isOtpComplete ? "blue.500" : "#B1CBF2"}
-                color="white"
-                _hover={isOtpComplete ? { bg: "blue.600" } : { bg: "#B1CBF2" }}
-                isDisabled={!isOtpComplete}
-                onClick={() => navigate("/register")}
-              >
-                Continue
-              </Button>
-
               <Flex justifyContent="space-between" width="100%" mt={4}>
                 <Text color="gray.600">
                   Didn’t get it?{" "}
@@ -165,6 +152,19 @@ const OtpPage = () => {
                 </Text>
               </Flex>
             </VStack>
+            <Button
+              colorScheme={isOtpComplete ? "blue" : undefined}
+              width="full"
+              padding={"30px"}
+              marginTop={'70px'}
+              bg={isOtpComplete ? "blue.500" : "#B1CBF2"}
+              color="white"
+              _hover={isOtpComplete ? { bg: "blue.600" } : { bg: "#B1CBF2" }}
+              isDisabled={!isOtpComplete}
+              onClick={() => navigate("/register")}
+            >
+              Continue
+            </Button>
           </Box>
         </Box>
       </Flex>

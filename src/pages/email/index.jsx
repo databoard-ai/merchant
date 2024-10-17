@@ -72,10 +72,11 @@ const EmailPage = () => {
               textAlign="start"
               mb={6}
               color={"#4283E4"}
+              fontWeight={"500"}
             >
               Become a Clocker Merchant
             </Heading>
-            <Text fontSize={"18px"} color={"black"} fontWeight={"semibold"}>
+            <Text fontSize={"18px"} color={"black"}>
               Sign up to become a Card Merchant.
             </Text>
             <VStack marginTop={"30px"} spacing={4}>
@@ -83,7 +84,7 @@ const EmailPage = () => {
                 <FormLabel
                   fontSize={"18px"}
                   color={"black"}
-                  fontWeight={"semibold"}
+                  // fontWeight={"semibold"}
                 >
                   Email
                 </FormLabel>
@@ -123,10 +124,11 @@ const EmailPage = () => {
                 onClick={() => navigate("/otp")}
                 leftIcon={<FcGoogle />}
                 // onClick={() => googleLogin()}
-                w="100%"
+                w="60%"
                 p="1.6em"
                 bgColor="#fff"
                 border="2px solid #838282"
+                fontWeight={"500"}
                 fontSize={{ base: "sm", md: "md" }}
                 _hover={"cursor"}
               >

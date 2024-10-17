@@ -71,12 +71,13 @@ const SignUpPage = () => {
           />
         </Box>
         <Button
-          onClick={() => navigate('/login')}
+          onClick={() => navigate("/login")}
           marginLeft={"15px"}
           fontSize={"18px"}
           _hover={"curser"}
           bg={"transparent"}
           marginTop={"25px"}
+          fontWeight={"100"}
         >
           <Image src={arrow} />
           Back
@@ -91,25 +92,25 @@ const SignUpPage = () => {
         >
           <Box width={"80%"} margin={"auto"}>
             <Heading
-              as="h2"
               size="xl"
               textAlign="start"
-              mb={6}
+              mb={2}
               color={"#4283E4"}
+              fontWeight={"400"}
             >
               Set up your account
             </Heading>
-            <VStack marginTop={"30px"} spacing={4}>
+            <VStack marginTop={"10px"} spacing={4}>
               <FormControl id="email">
                 <FormLabel
                   fontSize={"18px"}
                   color={"black"}
-                  fontWeight={"semibold"}
+                  // fontWeight={"semibold"}
                 >
                   Email
                 </FormLabel>
                 <Input
-                  height={"60px"}
+                  height={"40px"}
                   type="email"
                   placeholder="Enter your email"
                   value={email}
@@ -122,12 +123,12 @@ const SignUpPage = () => {
                   <FormLabel
                     fontSize={"18px"}
                     color={"black"}
-                    fontWeight={"semibold"}
+                    // fontWeight={"semibold"}
                   >
                     Firstname
                   </FormLabel>
                   <Input
-                    height={"60px"}
+                    height={"40px"}
                     type="text"
                     width={"100%"}
                     placeholder="Enter your firstname"
@@ -140,12 +141,12 @@ const SignUpPage = () => {
                   <FormLabel
                     fontSize={"18px"}
                     color={"black"}
-                    fontWeight={"semibold"}
+                    // fontWeight={"semibold"}
                   >
                     Lastname
                   </FormLabel>
                   <Input
-                    height={"60px"}
+                    height={"40px"}
                     width={"100%"}
                     type="text"
                     placeholder="Enter your lastname"
@@ -160,12 +161,12 @@ const SignUpPage = () => {
                   <FormLabel
                     fontSize={"18px"}
                     color={"black"}
-                    fontWeight={"semibold"}
+                    // fontWeight={"semibold"}
                   >
                     Phone number
                   </FormLabel>
                   <Input
-                    height={"60px"}
+                    height={"40px"}
                     width={"100%"}
                     type="tel"
                     placeholder="Enter your phone number"
@@ -178,12 +179,12 @@ const SignUpPage = () => {
                   <FormLabel
                     fontSize={"18px"}
                     color={"black"}
-                    fontWeight={"semibold"}
+                    // fontWeight={"semibold"}
                   >
-                    Country
+                    State/County
                   </FormLabel>
                   <Input
-                    height={"60px"}
+                    height={"40px"}
                     width={"100%"}
                     type="text"
                     placeholder="Enter your country"
@@ -197,12 +198,12 @@ const SignUpPage = () => {
                 <FormLabel
                   fontSize={"18px"}
                   color={"black"}
-                  fontWeight={"semibold"}
+                  // fontWeight={"semibold"}
                 >
                   Business Name
                 </FormLabel>
                 <Input
-                  height={"60px"}
+                  height={"40px"}
                   type="text"
                   placeholder="Enter your business name"
                   value={businessName}
@@ -214,13 +215,13 @@ const SignUpPage = () => {
                 <FormLabel
                   fontSize={"18px"}
                   color={"black"}
-                  fontWeight={"semibold"}
+                  // fontWeight={"semibold"}
                 >
                   Password
                 </FormLabel>
                 <InputGroup>
                   <Input
-                    height={"60px"}
+                    height={"40px"}
                     type={passwordVisible ? "text" : "password"} // Toggle between text and password types
                     placeholder="Enter your password"
                     value={password}
@@ -251,13 +252,13 @@ const SignUpPage = () => {
                 <FormLabel
                   fontSize={"18px"}
                   color={"black"}
-                  fontWeight={"semibold"}
+                  // fontWeight={"semibold"}
                 >
                   Confirm Password
                 </FormLabel>
                 <InputGroup>
                   <Input
-                    height={"60px"}
+                    height={"40px"}
                     type={passwordVisible ? "text" : "password"} // Toggle between text and password types
                     placeholder="Confirm your password"
                     value={password}
@@ -291,12 +292,12 @@ const SignUpPage = () => {
               <Button
                 colorScheme={isEmailValid ? "blue" : undefined}
                 width="full"
-                padding={"30px"}
+                padding={"20px"}
                 bg={isEmailValid ? "blue.500" : "#B1CBF2"}
                 color="white"
                 _hover={isEmailValid ? { bg: "blue.600" } : { bg: "#B1CBF2" }}
                 isDisabled={!isEmailValid}
-                onClick={() => navigate("/otp")}
+                onClick={() => navigate("/dashboard")}
               >
                 Finish
               </Button>

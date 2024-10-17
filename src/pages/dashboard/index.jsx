@@ -19,15 +19,37 @@ import {
   TableContainer,
   FormControl,
   FormLabel,
-  Input
+  Input,
+  Image,
+  useDisclosure
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import dummyData from "./cardData";
+import { useNavigate } from "react-router-dom";
+import TopUpModal from "../../components/TopUpModal";
+import LinkModal from "../../components/LinkCardModal";
+import hand from "../../assets/waving hand.svg";
+import card from "../../assets/link card.svg";
+import top from "../../assets/topup.svg";
+import logo from "../../assets/logo.png";
+import searchIcon from "../../assets/search.svg";
+
 
 const DashboardPage = () => {
   const itemsPerPage = 10; // Display 10 items per page
   const [currentPage, setCurrentPage] = useState(1);
-  const [search, setsearch] = useState("");
+  const {
+    isOpen: isTopUpOpen,
+    onOpen: onTopUpOpen,
+    onClose: onTopUpClose
+  } = useDisclosure();
+  const {
+    isOpen: isLinkOpen,
+    onOpen: onLinkOpen,
+    onClose: onLinkClose
+  } = useDisclosure();
+
+  const [search, setSearch] = useState("");
   const filteredData = dummyData.filter((user) => {
     const searchTerm = search.toLowerCase();
     return (
@@ -39,7 +61,7 @@ const DashboardPage = () => {
         .includes(searchTerm)
     );
   });
-
+  const navigate = useNavigate();
   // Pagination calculations
   const totalItems = filteredData.length;
   const startIdx = (currentPage - 1) * itemsPerPage;
@@ -47,7 +69,7 @@ const DashboardPage = () => {
   const paginatedData = filteredData.slice(startIdx, endIdx);
 
   return (
-    <Box width={{ base: "80%", lg: "70%" }} margin={"auto"}>
+    <Box width={{ base: "90%", lg: "80%" }} margin={"auto"}>
       <Heading
         mt={"100px"}
         as="h4"
@@ -56,7 +78,9 @@ const DashboardPage = () => {
         mb={6}
         color={"black"}
       >
-        Welcome back ,Oluseyi
+        <Flex>
+          Welcome back Oluseyi <Image src={hand} />
+        </Flex>
       </Heading>
       <Text as="p" color={"#959595"}>
         Manage your clients cards from here
@@ -69,12 +93,15 @@ const DashboardPage = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Button bg={"#4283E4"} color={"white"}>
-          New
-        </Button>
-        <Text textAlign={"center"} ml={"5px"}>
-          Link credits cost N500 per card.
-        </Text>
+        <Flex justifyContent="center" alignItems="center">
+          <Button bg="#4283E4" color="white">
+            New
+          </Button>
+          <Text textAlign="center" ml="5px">
+            Link credits cost N500 per card.
+          </Text>
+        </Flex>
+
         <Flex>
           <Button bg={"#4283E4"} color={"white"}>
             Explore
@@ -189,25 +216,59 @@ const DashboardPage = () => {
             <Flex justifyContent={"end"} mt={"30px"}>
               <Flex>
                 <FormControl id="search">
-                  <Input
-                    height={"40px"}
-                    width={"350px"}
-                    type="text"
-                    placeholder="Search Users by Name, Link or Date"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)} // Update search input
-                  />
+                  <Flex alignItems="center" position="relative" width="350px">
+                    <Image
+                      src={searchIcon} // assuming 'searchIcon' holds the image
+                      alt="Search Icon"
+                      position="absolute"
+                      left="10px"
+                      boxSize="20px" // Adjust icon size to fit within the input height
+                    />
+                    <Input
+                      height="40px"
+                      width="100%"
+                      type="text"
+                      placeholder="Search Users by Name, Link or Date"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)} // Update search input
+                      pl="40px" // Padding-left to make space for the icon on the left
+                    />
+                  </Flex>
                 </FormControl>
-                <Button bg={"#4283E4"} color={"white"} ml="10px">
-                  Link Card
+
+                <Button
+                  onClick={onLinkOpen}
+                  bg="#4283E4"
+                  color="white"
+                  p="20px"
+                  pl={"25px"}
+                  pr={"25px"}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Image src={card} />
+                  <Text ml="5px">Link Card</Text>
                 </Button>
+
                 <Button
                   border="1px solid #838282"
-                  ml={"10px"}
-                  bg={"white"}
-                  color={"black"}
+                  ml="10px"
+                  bg="white"
+                  color="#292929"
+                  p="20px"
+                  pl={"25px"}
+                  pr={"25px"}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  width="fit-content"
+                  onClick={onTopUpOpen}
                 >
-                  Top up
+                  <Image src={top} />
+                  <Text color="#292929" ml="5px">
+                    Top up
+                  </Text>
                 </Button>
               </Flex>
             </Flex>
@@ -303,6 +364,8 @@ const DashboardPage = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+      <TopUpModal isOpen={isTopUpOpen} onClose={onTopUpClose} />
+      <LinkModal isOpen={isLinkOpen} onClose={onLinkClose} />
     </Box>
   );
 };

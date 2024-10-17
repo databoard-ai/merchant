@@ -296,7 +296,7 @@ const SignUpPage = () => {
                 color="white"
                 _hover={isEmailValid ? { bg: "blue.600" } : { bg: "#B1CBF2" }}
                 isDisabled={!isEmailValid}
-                onClick={() => navigate("/otp")}
+                onClick={() => navigate("/dashboard")}
               >
                 Finish
               </Button>

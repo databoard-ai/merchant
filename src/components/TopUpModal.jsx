@@ -12,31 +12,56 @@ import {
   Text,
   Box,
   IconButton,
-  VStack
+  VStack,
+  Input
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 
 function TopUpModal({ isOpen, onClose }) {
-  const [credits, setCredits] = useState(1); // Start with 1 credit
+  const [credits, setCredits] = useState(1); // Actual credits
+  const [inputValue, setInputValue] = useState("1"); // Temporary input for flexibility
   const unitPrice = 500; // Price per unit
   const totalAmount = credits * unitPrice; // Calculate total cost
 
   // Function to increase credits
   const incrementCredits = () => {
-    setCredits((prevCredits) => prevCredits + 1);
+    const newCredits = credits + 1;
+    setCredits(newCredits);
+    setInputValue(newCredits.toString());
   };
 
   // Function to decrease credits, ensuring it doesn't go below 1
   const decrementCredits = () => {
-    setCredits((prevCredits) => (prevCredits > 1 ? prevCredits - 1 : 1));
+    if (credits > 1) {
+      const newCredits = credits - 1;
+      setCredits(newCredits);
+      setInputValue(newCredits.toString());
+    }
+  };
+
+  // Function to handle manual input change (allow empty temporarily)
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    if (value === "" || /^\d*$/.test(value)) {
+      setInputValue(value); // Allow empty or valid number
+    }
+  };
+
+  // Validate input onBlur to ensure it stays valid
+  const handleBlur = () => {
+    const parsedValue = parseInt(inputValue, 10);
+    if (!isNaN(parsedValue) && parsedValue >= 1) {
+      setCredits(parsedValue);
+    } else {
+      setCredits(1); // Reset to 1 if invalid
+    }
+    setInputValue(parsedValue >= 1 ? parsedValue.toString() : "1");
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent
-      p={'20px'}
-      >
+      <ModalContent p={"20px"}>
         <ModalHeader>Purchase Link Credit</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -54,7 +79,7 @@ function TopUpModal({ isOpen, onClose }) {
 
           <Text mt={4}>Amount of credits</Text>
 
-          {/* Increment and Decrement Buttons */}
+          {/* Increment and Decrement Buttons + Input Field */}
           <Flex alignItems="center" justifyContent="space-between" mt={2}>
             <VStack>
               <Flex
@@ -73,14 +98,16 @@ function TopUpModal({ isOpen, onClose }) {
                   _hover={{ bg: "transparent" }}
                   color={credits === 1 ? "#838282" : "black"}
                 />
-                <Text
-                  fontStyle={"italic"}
+                {/* Input Field for Manual Entry */}
+                <Input
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onBlur={handleBlur} // Ensure valid value on blur
+                  type="text" // Allow the user to type freely
+                  width="60px"
+                  textAlign="center"
                   mx={4}
-                  fontWeight="bold"
-                  color={credits === 1 ? "#838282" : "black"}
-                >
-                  {credits}
-                </Text>
+                />
                 <IconButton
                   icon={<AddIcon />}
                   onClick={incrementCredits}
@@ -98,12 +125,10 @@ function TopUpModal({ isOpen, onClose }) {
             </VStack>
             {/* Display Total Cost */}
             <VStack>
-              <Text
-                fontStyle={"italic"}
-                color={"black"}
-              >{`N${totalAmount}`}</Text>
+              <Text fontStyle={"italic"} color={"black"}>
+                {`N${totalAmount}`}
+              </Text>
               <Text fontStyle={"italic"} color={"#838282"}>
-                {" "}
                 Excl. VAT
               </Text>
             </VStack>
@@ -119,7 +144,7 @@ function TopUpModal({ isOpen, onClose }) {
             onClick={onClose}
             color={"#FA4F4F"}
             mr={3}
-            textDecoration="underline" // Underline the Cancel text
+            textDecoration="underline"
             cursor="pointer"
           >
             Cancel

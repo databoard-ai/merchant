@@ -124,7 +124,7 @@ const EmailPage = () => {
                 onClick={() => navigate("/otp")}
                 leftIcon={<FcGoogle />}
                 // onClick={() => googleLogin()}
-                w="60%"
+                w={{md:"60%"}}
                 p="1.6em"
                 bgColor="#fff"
                 border="2px solid #838282"

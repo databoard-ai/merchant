@@ -58,6 +58,7 @@ function TopUpModal({ isOpen, onClose }) {
     setInputValue(parsedValue >= 1 ? parsedValue.toString() : "1");
   };
 
+  
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

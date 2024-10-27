@@ -96,7 +96,7 @@ const SignUpPage = () => {
               textAlign="start"
               mb={2}
               color={"#4283E4"}
-              fontWeight={"400"}
+              fontWeight={"600"}
             >
               Set up your account
             </Heading>

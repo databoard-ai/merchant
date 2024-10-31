@@ -44,6 +44,9 @@ function TopUpModal({ isOpen, onClose }) {
     const value = e.target.value;
     if (value === "" || /^\d*$/.test(value)) {
       setInputValue(value); // Allow empty or valid number
+      if (value) {
+        setCredits(parseInt(value, 10)); // Update credits in real-time for calculations
+      }
     }
   };
 
@@ -58,7 +61,6 @@ function TopUpModal({ isOpen, onClose }) {
     setInputValue(parsedValue >= 1 ? parsedValue.toString() : "1");
   };
 
-  
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -105,7 +107,7 @@ function TopUpModal({ isOpen, onClose }) {
                   onChange={handleInputChange}
                   onBlur={handleBlur} // Ensure valid value on blur
                   type="text" // Allow the user to type freely
-                  width="60px"
+                  width={`${Math.max(2, inputValue.length) * 10}px`} // Dynamic width based on length
                   textAlign="center"
                   mx={4}
                 />

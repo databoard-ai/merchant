@@ -48,4 +48,4 @@ jobs:
         app-name: 'merchant-web-test'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_35574a499f214032b0cdeef54dedf43b }}
-        images: 'clockertestacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8990f536742149a29a0d6dcaa834e888 }}/clocker-web-test:${{ github.sha }}'
+        images: 'clockertestacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8990f536742149a29a0d6dcaa834e888 }}/merchant-web-test:${{ github.sha }}'

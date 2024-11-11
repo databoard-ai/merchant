@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: clockertestacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8990f536742149a29a0d6dcaa834e888 }}/clocker-web-test:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./Dockerfile.dev
 
   deploy:
     runs-on: ubuntu-latest

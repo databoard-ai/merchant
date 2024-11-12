@@ -14,8 +14,8 @@ COPY . .
 # Set NODE_ENV to development
 ENV NODE_ENV=development
 
-# Copy .env.dev file to the container 
-COPY .env.dev .env
+# # Copy .env.dev file to the container 
+# COPY .env.dev .env
 
 # Build the Vite application for development
 RUN npm run build

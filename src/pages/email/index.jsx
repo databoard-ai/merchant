@@ -8,7 +8,9 @@ import {
   VStack,
   Flex,
   Image,
-  Text
+  Text,
+  useToast,
+  Spinner
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import signUpImage from "../../assets/signUp.jpg";
@@ -17,11 +19,16 @@ import line from "../../assets/signUp_line.svg";
 
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import { emailRegister } from "../../api/services/auth.service";
+
+
 
 const EmailPage = () => {
   const [email, setEmail] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
+  const navigate = useNavigate();
   const handleEmailChange = (e) => {
     const inputEmail = e.target.value;
     setEmail(inputEmail);
@@ -30,6 +37,20 @@ const EmailPage = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setIsEmailValid(emailRegex.test(inputEmail));
   };
+
+  const handleProceed = async () => {
+    setIsLoading(true);
+    try {
+      await emailRegister(email);
+      toast({ title: "Email verified!", status: "success" });
+      navigate("/otp");
+    } catch (error) {
+      toast({ title: error.message, status: "error" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
 
   return (
     <Box>
@@ -104,15 +125,15 @@ const EmailPage = () => {
                 color="white"
                 _hover={isEmailValid ? { bg: "blue.600" } : { bg: "#B1CBF2" }}
                 isDisabled={!isEmailValid}
-                onClick={() => navigate("/otp")}
+                onClick={handleProceed}
               >
-                Proceed
+                {!isLoading ? "Proceed" : <Spinner size="sm" color="white" />}{" "}
               </Button>
               <Image src={line} alt="line" />
               <Text>
                 Already a Merchant?{" "}
                 <Text
-                  onClick={() => navigate("/login")}
+                  // onClick={() => navigate("/login")}
                   as="span"
                   color="#4283E4"
                   cursor="pointer"
@@ -124,7 +145,7 @@ const EmailPage = () => {
                 onClick={() => navigate("/otp")}
                 leftIcon={<FcGoogle />}
                 // onClick={() => googleLogin()}
-                w={{md:"60%"}}
+                w={{ md: "60%" }}
                 p="1.6em"
                 bgColor="#fff"
                 border="2px solid #838282"

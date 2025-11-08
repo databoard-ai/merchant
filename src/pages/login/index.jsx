@@ -162,7 +162,7 @@ const LoginPage = () => {
                 </Text>
               </Text>
               <Button
-              onClick={()=>navigate('/dashboard')}
+                onClick={() => navigate("/dashboard")}
                 leftIcon={<FcGoogle />}
                 w="100%"
                 p="1.6em"
